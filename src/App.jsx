@@ -4,9 +4,26 @@ import {
   Menu, X, Phone, MapPin, Clock, Star, ChevronRight,
   ArrowRight, CheckCircle, Heart, Award, Users, Activity,
   Zap, Shield, Stethoscope, Brain, Baby, User, Bone,
-  Dumbbell, MoveHorizontal, RefreshCw, MessageCircle, Calendar, Wand2, Sparkles, Leaf
+  Dumbbell, MoveHorizontal, RefreshCw, MessageCircle, Calendar, Wand2, Sparkles, Leaf, Plus,
 } from "lucide-react";
+
 import myImage from './assets/zammu.png';
+import logo from './assets/zammu logo.png';
+import img1 from "./assets/img1.jpeg"
+import img2 from "./assets/img2.jpeg"
+import img3 from "./assets/img3.jpeg"
+import img4 from "./assets/img4.jpeg"
+import img5 from "./assets/img5.jpeg"
+import img6 from "./assets/img6.jpeg"
+
+const images = [
+  { src: img1, alt: "Zammu Physio Care" },
+  { src: img2, alt: "Physiotherapy Treatment" },
+  { src: img3, alt: "Clinic Interior" },
+  { src: img4, alt: "Patient Care" },
+  { src: img5, alt: "Rehabilitation Therapy" },
+  { src: img6, alt: "Exercise Therapy" },
+]
 
 /* ─────────────────────────────────────────
    DESIGN TOKENS
@@ -52,6 +69,63 @@ function Section({ children, className = "", id = "" }) {
     </motion.div>
   );
 }
+function GalleryItem({ item, index }) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-60px' })
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.92 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      className="relative overflow-hidden rounded-xl group cursor-pointer"
+    >
+      <img
+        src={item.src}
+        alt={item.alt}
+        className="w-full h-56 md:h-64 object-cover transition-all duration-500 group-hover:scale-110"
+      />
+
+      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300" />
+    </motion.div>
+  )
+}
+
+function Gallery() {
+  const [showAll, setShowAll] = useState(false)
+
+  const visibleImages = showAll ? images : images.slice(0, 6)
+
+  return (
+    <section id="gallery" className="section-padding bg-primary">
+      <div className="max-w-7xl mx-auto px-4">
+
+        <div className="text-center mb-14 mt-14">
+          <p className="text-accent font-semibold text-sm tracking-widest uppercase mb-3 font-sans">
+            Inside Zammu Physio Care
+          </p>
+
+          <h2 className="section-title font-heading">
+            Our <span className="text-accent font-sans">Gallery</span>
+          </h2>
+
+          <p className="text-textLight text-sm mt-2 font-sans">
+            Take a look inside our modern physiotherapy clinic and treatment spaces.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+          {visibleImages.map((item, i) => (
+            <GalleryItem key={i} item={item} index={i} />
+          ))}
+        </div>
+
+
+      </div>
+    </section>
+  )
+}
 
 /* ─── DATA ─── */
 const NAV = ["Home", "Services", "About", "Process", "Testimonials", "Contact"];
@@ -93,8 +167,8 @@ const REVIEWS = [
 ];
 
 const STATS = [
+  { v: "5+ years", l: "Experience" },
   { v: "5,000+", l: "Patients Treated" },
-  { v: "12+", l: "Conditions Treated" },
   { v: "All Ages", l: "Patients Welcomed" },
   { v: "Ortho & Neuro", l: "Specialisations" },
 ];
@@ -207,16 +281,33 @@ Please contact me.
         <div className="max-w-7xl mx-auto px-5 lg:px-10 flex items-center justify-between h-[74px]">
 
           {/* Logo */}
-          <motion.div initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }} className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: `linear-gradient(135deg, ${C.primary}, ${C.dark})` }}>
-              <Leaf size={16} className="text-white" strokeWidth={2.2} />
-            </div>
+         
+
+          <motion.div
+            initial={{ opacity: 0, x: -16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center gap-3"
+          >
+            {/* Logo Image */}
+            <img
+              src={logo}
+              alt="Zammu Physio Care"
+              className="w-11 h-11 object-contain rounded-xl"
+            />
+
             <div className="leading-tight">
-              {/* Brand name — heavier, more legible */}
-              <div className="text-[16px] font-bold tracking-tight" style={{ color: C.text }}>
+              <div
+                className="text-[16px] font-bold tracking-tight"
+                style={{ color: C.text }}
+              >
                 Zammu <span style={{ color: C.dark }}>Physio</span> Care
               </div>
-              <div className="text-[10px] font-medium tracking-[0.18em] uppercase" style={{ color: C.faint, marginTop: 1 }}>
+
+              <div
+                className="text-[10px] font-medium tracking-[0.18em] uppercase"
+                style={{ color: C.faint, marginTop: 1 }}
+              >
                 Caring is our Passion
               </div>
             </div>
@@ -311,7 +402,7 @@ Please contact me.
               <motion.p variants={fadeUp}
                 className="text-[14px] italic font-semibold mb-10"
                 style={{ color: C.dark }}>
-                "We treat all types of Ortho &amp; Neuro Conditions"
+                "We treat all types of muscle, skeletal & neurological conditions "
               </motion.p>
 
               <motion.div variants={fadeUp} className="flex flex-wrap gap-3 mb-12">
@@ -321,7 +412,7 @@ Please contact me.
 
               {/* Hero stats */}
               <motion.div variants={fadeUp} className="flex flex-wrap gap-7">
-                {STATS.slice(0, 3).map((s, i) => (
+                {STATS.slice(0, 4).map((s, i) => (
                   <div key={i} className={`${i > 0 ? "pl-7 border-l" : ""}`} style={{ borderColor: C.border }}>
                     <div className="text-[1.5rem] font-bold leading-tight" style={{ color: C.dark }}>{s.v}</div>
                     <div className="text-[12.5px] font-medium mt-0.5" style={{ color: C.faint }}>{s.l}</div>
@@ -422,22 +513,51 @@ Please contact me.
 
             {/* Content side */}
             <Section>
-              <motion.div variants={fadeUp} className="mb-7"><Badge soft>About Us</Badge></motion.div>
-              <motion.h2 variants={fadeUp}
+              <motion.div variants={fadeUp} className="mb-7">
+                <Badge soft>About Us</Badge>
+              </motion.div>
+
+              <motion.h2
+                variants={fadeUp}
                 className="serif text-[2.1rem] lg:text-[2.6rem] leading-[1.18] mb-5"
-                style={{ color: C.text, fontWeight: 600 }}>
-                Caring is Our<br /><span className="italic" style={{ color: C.dark }}>Passion</span>
+                style={{ color: C.text, fontWeight: 600 }}
+              >
+                Caring is Our
+                <br />
+                <span className="italic" style={{ color: C.dark }}>
+                  Passion
+                </span>
               </motion.h2>
-              <motion.p variants={fadeUp}
+
+              <motion.p
+                variants={fadeUp}
                 className="text-[15.5px] leading-[1.78] mb-4"
-                style={{ color: C.muted }}>
-                At Zammu Physio Care, we believe every patient deserves expert, compassionate treatment. Located at No.14, Kumaraswamy Street, Pallavaram, Chennai — we specialise in all types of orthopaedic and neurological conditions.
+                style={{ color: C.muted }}
+              >
+                At Zammu Physio Care, we believe every patient deserves expert,
+                compassionate treatment. Located at No.14, Kumaraswamy Street,
+                Pallavaram, Chennai — we specialise in all types of orthopaedic and
+                neurological conditions.
               </motion.p>
-              <motion.p variants={fadeUp}
+              <motion.p
+                variants={fadeUp}
+                className="text-[15.5px] leading-[1.78] mb-4"
+                style={{ color: C.muted }}
+              >
+                Led by Dr. Shariffa M, Physiotherapist, our clinic focuses on improving mobility, relieving pain, and supporting long-term recovery through evidence-based treatments and hands-on care.
+              </motion.p>
+
+
+              <motion.p
+                variants={fadeUp}
                 className="text-[15.5px] leading-[1.78] mb-9"
-                style={{ color: C.muted }}>
-                Our experienced physiotherapists combine hands-on manual therapy with evidence-based techniques — helping patients of all ages move freely, live pain-free, and regain confidence.
+                style={{ color: C.muted }}
+              >
+                Our experienced physiotherapists combine hands-on manual therapy with
+                evidence-based techniques — helping patients of all ages move freely,
+                live pain-free, and regain confidence.
               </motion.p>
+
 
               {[
                 "Physiotherapy for all ages — infants to seniors",
@@ -445,19 +565,44 @@ Please contact me.
                 "Personalised home advice with every treatment",
                 "Near Periya Palayattamman Kovil, Pallavaram",
               ].map((pt, i) => (
-                <motion.div key={i} variants={fadeUp} className="flex items-start gap-3.5 mb-4">
-                  <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                    style={{ background: `${C.primary}25` }}>
-                    <CheckCircle size={12} strokeWidth={3} style={{ color: C.dark }} />
+                <motion.div
+                  key={i}
+                  variants={fadeUp}
+                  className="flex items-start gap-3.5 mb-4"
+                >
+                  <div
+                    className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                    style={{ background: `${C.primary}25` }}
+                  >
+                    <CheckCircle
+                      size={12}
+                      strokeWidth={3}
+                      style={{ color: C.dark }}
+                    />
                   </div>
-                  <span className="text-[14.5px] leading-[1.7]" style={{ color: C.sub }}>{pt}</span>
+
+                  <span
+                    className="text-[14.5px] leading-[1.7]"
+                    style={{ color: C.sub }}
+                  >
+                    {pt}
+                  </span>
                 </motion.div>
               ))}
 
+
               <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-3">
-                <PrimaryBtn href="tel:6382273687" className="px-7 py-4 text-[15px]"><Phone size={15} strokeWidth={2.5} /> Call 63822 73687</PrimaryBtn>
-                <GhostBtn href="#services" className="px-6 py-4 text-[14.5px]"><ArrowRight size={15} /> Our Services</GhostBtn>
+                <PrimaryBtn href="tel:6382273687" className="px-7 py-4 text-[15px]">
+                  <Phone size={15} strokeWidth={2.5} />
+                  Call 63822 73687
+                </PrimaryBtn>
+
+                <GhostBtn href="#services" className="px-6 py-4 text-[14.5px]">
+                  <ArrowRight size={15} />
+                  Our Services
+                </GhostBtn>
               </motion.div>
+
             </Section>
           </div>
         </div>
@@ -470,15 +615,20 @@ Please contact me.
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <Section className="text-center mb-14">
             <motion.div variants={fadeUp} className="flex justify-center mb-6"><Badge>We Are Specialised In</Badge></motion.div>
-            <motion.h2 variants={fadeUp}
+            <motion.h2
+              variants={fadeUp}
               className="serif text-[2rem] lg:text-[2.6rem] leading-[1.2] mb-4"
-              style={{ color: C.text, fontWeight: 600 }}>
-              Care for Every <span className="italic" style={{ color: C.dark }}>Condition</span>
+              style={{ color: C.text, fontWeight: 600 }}
+            >
+              <span className="block lg:inline">Orthopaedic ,</span>{" "}
+              <span className="block lg:inline">Neurological ,</span>{" "}
+              <span className="block lg:inline">Pediatric &</span>{" "}
+              <span className="block lg:inline">Women’s health care</span>
             </motion.h2>
             <motion.p variants={fadeUp}
               className="text-[15.5px] leading-[1.78] max-w-[500px] mx-auto"
               style={{ color: C.muted }}>
-              From acute injuries to chronic conditions — our specialist therapists deliver targeted, evidence-based treatment for lasting results.
+
             </motion.p>
           </Section>
 
@@ -511,6 +661,7 @@ Please contact me.
           </Section>
         </div>
       </section>
+      <Gallery />
 
       {/* ══════════════════════════════════════
           WHY CHOOSE US
@@ -666,6 +817,26 @@ Please contact me.
             ))}
           </div>
         </div>
+        {/* Walk-in & Home Visit Note */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-14 mx-3.5 lg:mx-4 text-center p-6 rounded-3xl"
+          style={{
+            background: C.white,
+            border: `1.5px solid ${C.border}`,
+            boxShadow: `0 4px 20px ${C.mint}22`,
+          }}
+        >
+          <p
+            className="text-[15px] lg:text-[16px] font-medium leading-[1.8]"
+            style={{ color: C.sub }}
+          >
+            Walk-in and Home visits are always welcome.
+          </p>
+        </motion.div>
       </section>
 
       {/* ══════════════════════════════════════

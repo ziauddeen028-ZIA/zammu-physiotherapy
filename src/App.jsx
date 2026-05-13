@@ -170,7 +170,7 @@ const STATS = [
   { v: "5+ years", l: "Experience" },
   { v: "5,000+", l: "Patients Treated" },
   { v: "All Ages", l: "Patients Welcomed" },
-  { v: "Ortho & Neuro", l: "Specialisations" },
+  { v: "Musculoskeletal and neuro conditions.", l: "Specialisations" },
 ];
 
 /* ─── SMALL COMPONENTS ─── */
@@ -281,7 +281,7 @@ Please contact me.
         <div className="max-w-7xl mx-auto px-5 lg:px-10 flex items-center justify-between h-[74px]">
 
           {/* Logo */}
-         
+
 
           <motion.div
             initial={{ opacity: 0, x: -16 }}
@@ -834,7 +834,12 @@ Please contact me.
             className="text-[15px] lg:text-[16px] font-medium leading-[1.8]"
             style={{ color: C.sub }}
           >
-            Walk-in and Home visits are always welcome.
+            Walk-in and Home visits are always welcome. <br />
+            Hours <br />
+            Mon–Sat: 10:00 AM to 2:00 PM <br />
+            5:00 PM to 9:00 PM <br />
+
+            Sunday: 10:00 AM to 2:00 PM
           </p>
         </motion.div>
       </section>
@@ -1095,7 +1100,7 @@ Please contact me.
             </div>
 
             {[
-              { title: "Specialisations", links: ["Cervical Spondylosis", "Neck & Shoulder Pain", "Frozen Shoulder", "Elbow & Wrist Pain", "Disc Problems", "Knee & Heel Pain"] },
+              { title: "Specialisations", links: ["All types of musculoskeletal and neuro conditions."] },
               { title: "More Services", links: ["Arthritis", "Pre & Post Surgery Rehab", "Neuro Rehab (Stroke)", "Bell's Palsy", "Pediatrics Care", "Women's Health & Fitness"] },
               { title: "Quick Links", links: ["About Us", "Our Services", "Book Appointment", "Contact Us"] },
             ].map((col, i) => (

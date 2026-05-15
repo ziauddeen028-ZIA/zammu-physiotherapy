@@ -1231,7 +1231,10 @@ Please contact me.
               </motion.p>
 
               {[
-                { icon: MapPin, label: "Address", value: "No.14, Kumaraswamy Street\nPallavaram, Chennai – 600 043\nNear Periya Palayattamman Kovil" },
+                {
+                  icon: MapPin, label: "Address", value: "No.14, Kumaraswamy Street\nPallavaram, Chennai – 600 043\nNear Periya Palayattamman Kovil", dir: "Get Direction →", link:
+                    "https://www.google.co.in/maps/place/Zammu+Physio+Care/@12.9678855,80.1421994,17z/data=!3m1!4b1!4m6!3m5!1s0x3a525fde35750a41:0x99b2febd9a25ead5!8m2!3d12.9678803!4d80.1447743!16s%2Fg%2F11r9gtf2rf?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D",
+                },
                 { icon: Phone, label: "Phone", value: "63822 73687" },
                 { icon: Clock, label: "Hours", value: "Monday – Saturday: 10:00 AM to 2:00 PM & 5:00 PM to 9:00 PM", value2: "Sunday : 10:00 AM to 2:00 PM " },
                 { icon: Activity, label: "Specialisation", value: "All types of Ortho & Neuro Conditions" },
@@ -1245,7 +1248,24 @@ Please contact me.
                     {/* Contact label */}
                     <div className="text-[11px] font-bold uppercase tracking-[0.12em] mb-1" style={{ color: C.faint }}>{item.label}</div>
                     {/* Contact value — proper contrast */}
-                    <div className="text-[14.5px] font-medium whitespace-pre-line leading-[1.68]" style={{ color: C.text }}>{item.value}</div>
+                    <div
+                      className="text-[14.5px] font-medium whitespace-pre-line leading-[1.68]"
+                      style={{ color: C.text }}
+                    >
+                      {item.value}
+                    </div>
+
+                    {item.link && (
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 mt-2 text-[14px] font-semibold transition-all duration-200 hover:translate-x-1"
+                        style={{ color: C.dark }}
+                      >
+                        Get Direction →
+                      </a>
+                    )}
                     <div className="text-[14.5px] font-medium whitespace-pre-line leading-[1.68]" style={{ color: C.text }}>{item.value2}</div>
                   </div>
                 </motion.div>

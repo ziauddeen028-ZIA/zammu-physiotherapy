@@ -1474,6 +1474,19 @@ Please contact me.
               We treat all types of Ortho &amp; Neuro Conditions
             </p>
           </div>
+          <div className="mt-5 text-center">
+            <a
+              href="https://ziauddeen-zia.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                background: `linear-gradient(135deg, ${C.primary}, ${C.dark})`,
+              }}
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full  font-semibold shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300"
+            >
+              Designed by Ziauddeen ↗
+            </a>
+          </div>
         </div>
       </footer>
     </div>

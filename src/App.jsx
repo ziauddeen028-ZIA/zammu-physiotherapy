@@ -107,7 +107,7 @@ function Gallery() {
           </p>
 
           <h2 className="section-title font-heading">
-            Our <span className="text-accent font-sans">Gallery</span>
+            <span className="serif text-[2rem] lg:text-[2.6rem] leading-[1.2] mb-4">Our Gallery</span>
           </h2>
 
           <p className="text-textLight text-sm mt-2 font-sans">
@@ -115,7 +115,7 @@ function Gallery() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-3 pb-10">
           {visibleImages.map((item, i) => (
             <GalleryItem key={i} item={item} index={i} />
           ))}
@@ -170,7 +170,7 @@ const STATS = [
   { v: "5+ years", l: "Experience" },
   { v: "5,000+", l: "Patients Treated" },
   { v: "All Ages", l: "Patients Welcomed" },
-  { v: "Musculoskeletal and neuro conditions.", l: "Specialisations" },
+  { v: "Ortho and Neuro", l: "Specialisations" },
 ];
 
 /* ─── SMALL COMPONENTS ─── */
@@ -212,6 +212,7 @@ function GhostBtn({ children, href, className = "" }) {
 export default function App() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -255,7 +256,262 @@ Please contact me.
       window.addEventListener("scroll", () => setScrolled(window.scrollY > 50), { passive: true });
     }
   }
+  if (showIntro) {
+    return (
+      <div
+        className="min-h-screen relative overflow-hidden flex items-center justify-center px-5 sm:px-8 lg:px-10 py-16"
+        style={{
+          background:
+            "linear-gradient(135deg, #f7fbf9 0%, #e5f3ed 45%, #cfe5db 100%)",
+        }}
+      >
+        {/* Background Glow */}
+        <div className="absolute -top-24 -left-24 w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-white/40 blur-3xl" />
+        <div className="absolute -bottom-32 -right-16 w-80 sm:w-[28rem] h-80 sm:h-[28rem] rounded-full bg-[#7FAF9B]/30 blur-3xl" />
 
+        {/* Grid */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)",
+            backgroundSize: "70px 70px",
+          }}
+        />
+
+        {/* Floating Card Left */}
+        <motion.div
+          animate={{ y: [0, -12, 0] }}
+          transition={{ duration: 5, repeat: Infinity }}
+          className="hidden xl:block absolute left-20 top-40"
+        >
+          <div
+            className="backdrop-blur-xl rounded-3xl p-5"
+            style={{
+              background: "rgba(255,255,255,0.55)",
+              border: "1px solid rgba(255,255,255,0.5)",
+            }}
+          >
+            <div className="text-4xl mb-2">🩺</div>
+
+            <p
+              className="text-sm font-semibold"
+              style={{ color: C.text }}
+            >
+              Expert Care
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Floating Card Right */}
+        <motion.div
+          animate={{ y: [0, 12, 0] }}
+          transition={{ duration: 6, repeat: Infinity }}
+          className="hidden xl:block absolute right-20 bottom-40"
+        >
+          <div
+            className="backdrop-blur-xl rounded-3xl p-5"
+            style={{
+              background: "rgba(255,255,255,0.55)",
+              border: "1px solid rgba(255,255,255,0.5)",
+            }}
+          >
+            <div className="text-4xl mb-2">💪</div>
+
+            <p
+              className="text-sm font-semibold"
+              style={{ color: C.text }}
+            >
+              Pain Recovery
+            </p>
+          </div>
+        </motion.div>
+        {/* Floating Card Top Right */}
+        <motion.div
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 4, repeat: Infinity }}
+          className="hidden xl:block absolute right-32 top-28"
+        >
+          <div
+            className="backdrop-blur-xl rounded-3xl p-5"
+            style={{
+              background: "rgba(255,255,255,0.55)",
+              border: "1px solid rgba(255,255,255,0.5)",
+            }}
+          >
+            <div className="text-4xl mb-2">🏃</div>
+
+            <p
+              className="text-sm font-semibold"
+              style={{ color: C.text }}
+            >
+              Better Mobility
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Floating Card Bottom Left */}
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 5, repeat: Infinity }}
+          className="hidden xl:block absolute left-28 bottom-32"
+        >
+          <div
+            className="backdrop-blur-xl rounded-3xl p-5"
+            style={{
+              background: "rgba(255,255,255,0.55)",
+              border: "1px solid rgba(255,255,255,0.5)",
+            }}
+          >
+            <div className="text-4xl mb-2">🦴</div>
+
+            <p
+              className="text-sm font-semibold"
+              style={{ color: C.text }}
+            >
+              Joint Therapy
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Floating Card Center Right */}
+        <motion.div
+          animate={{ y: [0, -8, 0] }}
+          transition={{ duration: 6, repeat: Infinity }}
+          className="hidden 2xl:block absolute right-10 top-1/2"
+        >
+          <div
+            className="backdrop-blur-xl rounded-3xl p-5"
+            style={{
+              background: "rgba(255,255,255,0.55)",
+              border: "1px solid rgba(255,255,255,0.5)",
+            }}
+          >
+            <div className="text-4xl mb-2">⚡</div>
+
+            <p
+              className="text-sm font-semibold"
+              style={{ color: C.text }}
+            >
+              Fast Recovery
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Main Content */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 40 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 w-full max-w-4xl text-center"
+        >
+          {/* Logo */}
+          <motion.img
+            initial={{ opacity: 0, rotate: -10 }}
+            animate={{ opacity: 1, rotate: 0 }}
+            transition={{ duration: 0.8 }}
+            src={logo}
+            alt="Zammu Physio Care"
+            className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 object-contain mx-auto mb-2 sm:mb-3"
+          />
+          <motion.h2
+            variants={fadeUp}
+            className="italic text-[1rem] sm:text-[1.8rem] lg:text-[2.5rem] leading-none tracking-[-0.03em] mb-2 sm:mb-4 font-[300] sm:font-[700] lg:font-[500]"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 300,
+              color: C.text,
+            }}
+          >
+            Zammu Physio Care
+          </motion.h2>
+
+          {/* Badge */}
+          <div
+            className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full mb-6 sm:mb-8"
+            style={{
+              background: "rgba(255,255,255,0.7)",
+              border: "1px solid rgba(255,255,255,0.5)",
+              backdropFilter: "blur(12px)",
+            }}
+          >
+            <span
+              className="w-2 h-2 rounded-full"
+              style={{ background: C.dark }}
+            />
+
+            <span
+              className="text-[10px] sm:text-[11px] lg:text-[12px] font-semibold tracking-[0.18em] uppercase"
+              style={{ color: C.dark }}
+            >
+              Caring is our Passion
+            </span>
+          </div>
+
+          {/* Heading */}
+          <h1
+            className="serif text-[3rem] sm:text-[4.5rem] lg:text-[5.5rem] leading-[0.95] tracking-tight"
+            style={{
+              color: C.text,
+              fontWeight: 600,
+              fontFamily: "'Cormorant Garamond', serif"
+            }}
+          >
+            Heal <br />
+            Recover <br />
+            Move Freely
+          </h1>
+
+          {/* Paragraph */}
+          <p
+            className="text-[15px] sm:text-[16px] lg:text-[18px] leading-7 max-w-xl mx-auto mt-5 mb-9 px-2"
+            style={{ color: C.sub }}
+          >
+            Premium physiotherapy care designed to relieve pain,
+            restore movement, and improve your quality of life.
+          </p>
+
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <button
+              onClick={() => setShowIntro(false)}
+              className="w-full sm:w-auto px-8 py-4 rounded-full text-white text-[15px] font-semibold transition-all duration-300 hover:scale-105"
+              style={{
+                background: `linear-gradient(135deg, ${C.primary}, ${C.dark})`,
+                boxShadow: `0 14px 40px ${C.primary}55`,
+              }}
+            >
+              Explore Website →
+            </button>
+
+            <a
+              href="tel:6382273687"
+              className="
+    w-full sm:w-auto
+    px-6 sm:px-8
+    py-3.5 sm:py-4
+    rounded-full
+    text-[14px] sm:text-[15px]
+    font-medium sm:font-semibold
+    transition-all duration-300
+    hover:scale-105
+    flex items-center justify-center gap-2
+  "
+              style={{
+                background: "rgba(255,255,255,0.72)",
+                color: C.text,
+                border: `1px solid ${C.border}`,
+                backdropFilter: "blur(12px)",
+                boxShadow: "0 6px 24px rgba(0,0,0,0.05)",
+              }}
+            >
+              📞 Call Now
+            </a>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
   return (
     <div style={{ backgroundColor: C.bg, color: C.text }} className="overflow-x-hidden">
       <style>{`
@@ -287,6 +543,7 @@ Please contact me.
             initial={{ opacity: 0, x: -16 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
+            onClick={() => setShowIntro(true)}
             className="flex items-center gap-3"
           >
             {/* Logo Image */}
@@ -402,7 +659,7 @@ Please contact me.
               <motion.p variants={fadeUp}
                 className="text-[14px] italic font-semibold mb-10"
                 style={{ color: C.dark }}>
-                "We treat all types of muscle, skeletal & neurological conditions "
+                "We treat all types of musculoskeletal and neurological conditions"
               </motion.p>
 
               <motion.div variants={fadeUp} className="flex flex-wrap gap-3 mb-12">
@@ -411,11 +668,24 @@ Please contact me.
               </motion.div>
 
               {/* Hero stats */}
-              <motion.div variants={fadeUp} className="flex flex-wrap gap-7">
+              <motion.div
+                variants={fadeUp}
+                className="grid grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-7"
+              >
                 {STATS.slice(0, 4).map((s, i) => (
-                  <div key={i} className={`${i > 0 ? "pl-7 border-l" : ""}`} style={{ borderColor: C.border }}>
-                    <div className="text-[1.5rem] font-bold leading-tight" style={{ color: C.dark }}>{s.v}</div>
-                    <div className="text-[12.5px] font-medium mt-0.5" style={{ color: C.faint }}>{s.l}</div>
+                  <div key={i} className="pl-4 lg:pl-7 border-l" style={{ borderColor: C.border }}>
+                    <div
+                      className="text-[1.8rem] sm:text-[2rem] lg:text-[2.2rem] font-bold leading-tight"
+                      style={{ color: C.dark }}
+                    >
+                      {s.v}
+                    </div>
+                    <div
+                      className="text-[12px] sm:text-[13px] font-medium mt-1"
+                      style={{ color: C.faint }}
+                    >
+                      {s.l}
+                    </div>
                   </div>
                 ))}
               </motion.div>
@@ -432,8 +702,10 @@ Please contact me.
                   <img
                     src={myImage}
                     alt="Physiotherapy at Zammu Physio Care"
-                    className="w-full h-full object-contain"
-                    style={{ filter: "brightness(1.04) saturate(0.88)" }}
+                    className="w-full h-full object-cover"
+                    style={{
+                      filter: "brightness(1.02) saturate(0.92)",
+                    }}
                   />
                   <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(30,45,40,0.12) 0%, transparent 50%)" }} />
                 </div>
@@ -654,7 +926,7 @@ Please contact me.
                 <p className="text-[13px] leading-[1.72]" style={{ color: C.muted }}>{s.desc}</p>
                 <div className="mt-3 flex items-center gap-1 text-[12px] font-semibold opacity-0 group-hover:opacity-100 transition-opacity"
                   style={{ color: C.dark }}>
-                  Learn more <ChevronRight size={12} strokeWidth={2.5} />
+
                 </div>
               </motion.div>
             ))}
@@ -666,7 +938,7 @@ Please contact me.
       {/* ══════════════════════════════════════
           WHY CHOOSE US
       ══════════════════════════════════════ */}
-      <section className="py-24 lg:py-32" style={{ background: C.bg }}>
+      <section className="py-24 lg:py-32" style={{ background: C.section }}>
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
 
@@ -737,7 +1009,7 @@ Please contact me.
       {/* ══════════════════════════════════════
           PROCESS
       ══════════════════════════════════════ */}
-      <section id="process" className="py-24 lg:py-32" style={{ background: C.section }}>
+      <section id="process" className="py-24 lg:py-32" style={{ background: C.bg }}>
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <Section className="text-center mb-14">
             <motion.div variants={fadeUp} className="flex justify-center mb-6"><Badge>Your Journey</Badge></motion.div>
@@ -779,7 +1051,7 @@ Please contact me.
       {/* ══════════════════════════════════════
           TESTIMONIALS
       ══════════════════════════════════════ */}
-      <section id="testimonials" className="py-24 lg:py-32" style={{ background: C.bg }}>
+      <section id="testimonials" className="py-24 lg:py-32" style={{ background: C.section }}>
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <Section className="text-center mb-14">
             <motion.div variants={fadeUp} className="flex justify-center mb-6"><Badge soft>Patient Stories</Badge></motion.div>
@@ -823,24 +1095,73 @@ Please contact me.
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-14 mx-3.5 lg:mx-4 text-center p-6 rounded-3xl"
-          style={{
-            background: C.white,
-            border: `1.5px solid ${C.border}`,
-            boxShadow: `0 4px 20px ${C.mint}22`,
-          }}
+          className="mt-14 mx-4"
         >
-          <p
-            className="text-[15px] lg:text-[16px] font-medium leading-[1.8]"
-            style={{ color: C.sub }}
+          <div
+            className="max-w-3xl mx-auto rounded-[32px] p-8 lg:p-10 text-center"
+            style={{
+              background: C.white,
+              border: `1.5px solid ${C.border}`,
+              boxShadow: `0 10px 35px ${C.mint}20`,
+            }}
           >
-            Walk-in and Home visits are always welcome. <br />
-            Hours <br />
-            Mon–Sat: 10:00 AM to 2:00 PM <br />
-            5:00 PM to 9:00 PM <br />
+            <h3
+              className="text-2xl lg:text-3xl font-semibold mb-3"
+              style={{ color: C.text }}
+            >
+              Walk-In & Home Visits
+            </h3>
 
-            Sunday: 10:00 AM to 2:00 PM
-          </p>
+            <p
+              className="text-[15px] lg:text-[16px] mb-8"
+              style={{ color: C.sub }}
+            >
+              Walk-in consultations and home visits are always welcome.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-5">
+              {/* Mon-Sat */}
+              <div
+                className="rounded-2xl p-5"
+                style={{
+                  background: `${C.mint}10`,
+                  border: `1px solid ${C.border}`,
+                }}
+              >
+                <h4
+                  className="text-lg font-semibold mb-3"
+                  style={{ color: C.text }}
+                >
+                  Monday – Saturday
+                </h4>
+
+                <p className="text-sm leading-7" style={{ color: C.sub }}>
+                  10:00 AM – 2:00 PM <br />
+                  5:00 PM – 9:00 PM
+                </p>
+              </div>
+
+              {/* Sunday */}
+              <div
+                className="rounded-2xl p-5"
+                style={{
+                  background: `${C.mint}10`,
+                  border: `1px solid ${C.border}`,
+                }}
+              >
+                <h4
+                  className="text-lg font-semibold mb-3"
+                  style={{ color: C.text }}
+                >
+                  Sunday
+                </h4>
+
+                <p className="text-sm leading-7" style={{ color: C.sub }}>
+                  10:00 AM – 2:00 PM
+                </p>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </section>
 
@@ -912,7 +1233,7 @@ Please contact me.
               {[
                 { icon: MapPin, label: "Address", value: "No.14, Kumaraswamy Street\nPallavaram, Chennai – 600 043\nNear Periya Palayattamman Kovil" },
                 { icon: Phone, label: "Phone", value: "63822 73687" },
-                { icon: Clock, label: "Hours", value: "Monday – Saturday: 9:00 AM – 8:00 PM" },
+                { icon: Clock, label: "Hours", value: "Monday – Saturday: 10:00 AM to 2:00 PM & 5:00 PM to 9:00 PM", value2: "Sunday : 10:00 AM to 2:00 PM " },
                 { icon: Activity, label: "Specialisation", value: "All types of Ortho & Neuro Conditions" },
               ].map((item, i) => (
                 <motion.div key={i} variants={fadeUp} className="flex items-start gap-4 mb-6">
@@ -925,6 +1246,7 @@ Please contact me.
                     <div className="text-[11px] font-bold uppercase tracking-[0.12em] mb-1" style={{ color: C.faint }}>{item.label}</div>
                     {/* Contact value — proper contrast */}
                     <div className="text-[14.5px] font-medium whitespace-pre-line leading-[1.68]" style={{ color: C.text }}>{item.value}</div>
+                    <div className="text-[14.5px] font-medium whitespace-pre-line leading-[1.68]" style={{ color: C.text }}>{item.value2}</div>
                   </div>
                 </motion.div>
               ))}

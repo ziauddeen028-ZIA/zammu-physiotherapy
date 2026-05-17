@@ -4,8 +4,9 @@ import {
   Menu, X, Phone, MapPin, Clock, Star, ChevronRight,
   ArrowRight, CheckCircle, Heart, Award, Users, Activity,
   Zap, Shield, Stethoscope, Brain, Baby, User, Bone,
-  Dumbbell, MoveHorizontal, RefreshCw, MessageCircle, Calendar, Wand2, Sparkles, Leaf, Plus,
+  Dumbbell, MoveHorizontal, RefreshCw, MessageCircle, Calendar, Wand2, Sparkles, Leaf, Plus, Minus,
 } from "lucide-react";
+
 
 import myImage from './assets/zammu.png';
 import logo from './assets/zammu logo.png';
@@ -15,6 +16,8 @@ import img3 from "./assets/img3.jpeg"
 import img4 from "./assets/img4.jpeg"
 import img5 from "./assets/img5.jpeg"
 import img6 from "./assets/img6.jpeg"
+import about from "./assets/about.jpeg"
+import about2 from "./assets/about2.jpeg"
 
 const images = [
   { src: img1, alt: "Zammu Physio Care" },
@@ -206,6 +209,132 @@ function GhostBtn({ children, href, className = "" }) {
     </a>
   );
   return <button className={cls} style={style}>{children}</button>;
+}
+
+function FAQ() {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const faqs = [
+    {
+      question: "How long does each physiotherapy session take?",
+      answer:
+        "Most sessions last between 30 to 60 minutes depending on the condition and treatment plan.",
+    },
+    {
+      question: "Can physiotherapy help avoid surgery?",
+      answer:
+        "In many cases, physiotherapy can reduce pain and improve function enough to delay or avoid surgery.",
+    },
+    {
+      question: "Do I need a doctor’s referral for physiotherapy?",
+      answer:
+        "No. You can directly visit a physiotherapist in most cases without a doctor’s referral.",
+    },
+    {
+      question:
+        "What is the difference between physiotherapy and chiropractic treatment?",
+      answer:
+        "Physiotherapy focuses on rehabilitation, movement, exercises, and pain management, while chiropractic care mainly focuses on spinal adjustments.",
+    },
+    {
+      question: "Is physiotherapy painful?",
+      answer:
+        "Most treatments are gentle and safe. Some exercises or manual therapy may cause mild discomfort initially, but physiotherapy is designed to reduce pain and improve movement over time.",
+    },
+    {
+      question:
+        "Can physiotherapy help with posture and desk-job pain?",
+      answer:
+        "Absolutely. Physiotherapy is very effective for IT employee neck pain, lower back pain, poor posture, and repetitive strain injuries.",
+    },
+  ];
+
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <section className="py-24 lg:py-32" style={{ background: C.bg }} id="faq">
+      <div className="max-w-4xl mx-auto px-5 lg:px-10">
+
+        <div className="text-center mb-14">
+          <Badge soft>FAQs</Badge>
+
+          <h2
+            className="serif text-[2rem] lg:text-[2.6rem] leading-[1.2] mt-5"
+            style={{ color: C.text, fontWeight: 600 }}
+          >
+            Frequently Asked Questions
+          </h2>
+        </div>
+
+        <div className="space-y-4">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                viewport={{ once: true }}
+                className="rounded-2xl overflow-hidden"
+                style={{
+                  background: C.white,
+                  border: `1.5px solid ${C.border}`,
+                }}
+              >
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full flex items-center justify-between gap-4 text-left p-6"
+                >
+                  <h3
+                    className="text-[15px] lg:text-[17px] font-semibold"
+                    style={{ color: C.text }}
+                  >
+                    {faq.question}
+                  </h3>
+
+                  <div className="flex-shrink-0">
+                    {isOpen ? (
+                      <Minus
+                        className="w-5 h-5"
+                        style={{ color: C.dark }}
+                      />
+                    ) : (
+                      <Plus
+                        className="w-5 h-5"
+                        style={{ color: C.dark }}
+                      />
+                    )}
+                  </div>
+                </button>
+
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div
+                        className="px-6 pb-6 text-[14px] leading-[1.8]"
+                        style={{ color: C.muted }}
+                      >
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 /* ─── APP ─── */
@@ -764,7 +893,7 @@ Please contact me.
                   style={{ background: `linear-gradient(135deg, ${C.mint}, #EDD9C033)` }} />
                 <div className="relative rounded-[2rem] overflow-hidden"
                   style={{ aspectRatio: "4/5", boxShadow: `0 16px 56px ${C.mint}70` }}>
-                  <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=1000&fit=crop&crop=center"
+                  <img src={about}
                     alt="About Zammu Physio Care" className="w-full h-full object-cover"
                     style={{ filter: "brightness(1.03) saturate(0.88)" }} />
                 </div>
@@ -984,7 +1113,7 @@ Please contact me.
                   style={{ background: `linear-gradient(135deg, ${C.mint}, #EDD9C033)` }} />
                 <div className="relative rounded-[2rem] overflow-hidden"
                   style={{ aspectRatio: "4/5", boxShadow: `0 16px 56px ${C.mint}70` }}>
-                  <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=1000&fit=crop&crop=center"
+                  <img src={about2}
                     alt="Expert Physiotherapy" className="w-full h-full object-cover"
                     style={{ filter: "brightness(1.04) saturate(0.87)" }} />
                 </div>
@@ -1047,6 +1176,7 @@ Please contact me.
           </Section>
         </div>
       </section>
+
 
       {/* ══════════════════════════════════════
           TESTIMONIALS
@@ -1164,6 +1294,7 @@ Please contact me.
           </div>
         </motion.div>
       </section>
+      <FAQ />
 
       {/* ══════════════════════════════════════
           CTA BANNER
@@ -1273,7 +1404,7 @@ Please contact me.
 
               <motion.div variants={fadeUp} className="mt-7">
                 <PrimaryBtn href="tel:6382273687" className="px-8 py-4 text-[15px]">
-                  <Phone size={16} strokeWidth={2.5} /> 📞 63822 73687
+                  <Phone size={16} strokeWidth={2.5} />  63822 73687
                 </PrimaryBtn>
               </motion.div>
             </Section>
@@ -1413,6 +1544,7 @@ Please contact me.
           </div>
         </div>
       </section>
+
 
       {/* ══════════════════════════════════════
           FOOTER
